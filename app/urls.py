@@ -7,6 +7,7 @@ urlpatterns = [
     path('placeorder/',Placeorder.as_view()),
     path('addmenu/',MenuApi.as_view()),
     path('showmenu/',ShowMenuApi.as_view()),
+    path('showorder/',ShowOrderApi.as_view()),
 
 
 ]   

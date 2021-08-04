@@ -1,4 +1,4 @@
-from app.models import Menu, Restaurant
+from app.models import Menu, Order, Restaurant
 from rest_framework.response import Response
 from app.serializers import RestaurantSerializer, MenuSerializer, OrderSerializer, Userseriealizer
 from rest_framework import status
@@ -118,3 +118,11 @@ class Placeorder(APIView):
             return Response(ser.data,status= status.HTTP_201_CREATED)
 
         return Response(ser.errors,status= status.HTTP_400_BAD_REQUEST)
+
+       
+class ShowOrderApi(APIView):
+    permission_classes = (IsAuthenticated,)
+    def get(self, request):        
+        cat = Order.objects.all()
+        ser = OrderSerializer(cat,many = True)
+        return Response(ser.data)
